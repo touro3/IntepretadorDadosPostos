@@ -1,0 +1,72 @@
+__pycache__/
+*.pyc
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.spec
+
+# Ambiente virtual
+venv/
+.env
+*.venv
+Pipfile
+Pipfile.lock
+
+# Configurações de IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs e arquivos temporários
+*.log
+logs/
+tmp/
+*.bak
+.DS_Store
+
+# Dependências de pacotes
+*.mypy_cache/
+*.pytest_cache/
+*.tox/
+*.coverage
+.coverage.*
+htmlcov/
+site/
+
+# Arquivos de banco de dados locais
+*.db
+*.sqlite
+*.sqlite3
+
+# Configurações e chaves sensíveis
+.env
+secrets.json
+
+# Arquivos de cache do Streamlit
+frontend/.streamlit/
+
+# Arquivos de execução do Uvicorn
+*.pid
+
+# Cache do OpenAI API
+backend/app/__pycache__/
+backend/app/api/__pycache__/
+backend/app/api/v1/__pycache__/
+backend/app/api/v1/endpoints/__pycache__/
+backend/app/core/__pycache__/
+backend/app/schemas/__pycache__/
+
+# Arquivos de histórico de comandos no shell
+.history
+.bash_history
+.zsh_history
+
+# Arquivos de lock do sistema
+.lock
+
+# Relatórios de erros do Python
+python-crash.log
