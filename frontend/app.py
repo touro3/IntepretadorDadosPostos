@@ -1,13 +1,9 @@
 import streamlit as st
-import requests
-
-# Configuração da URL do backend
-API_URL = "http://localhost:8000/api/v1/chat"
+import time
 
 # Configuração da interface
 st.set_page_config(page_title="Chatbot GPT-4o", page_icon="💬")
 
-# Estilização da interface
 st.title("🤖 Chatbot com GPT-4o")
 st.write("Digite sua pergunta abaixo e o chatbot responderá.")
 
@@ -17,12 +13,16 @@ question = st.text_input("Pergunta:", placeholder="Digite sua dúvida aqui...")
 # Botão de envio
 if st.button("Enviar"):
     if question:
-        # Faz a requisição para o backend FastAPI
-        response = requests.post(API_URL, json={"question": question})
+        st.success("Resposta do Chatbot:")
         
-        # Exibe a resposta do chatbot
-        if response.status_code == 200:
-            st.success("Resposta do Chatbot:")
-            st.write(response.json()["answer"])
-        else:
-            st.error("Erro ao conectar com a API.")
+        # Aqui, futuramente, será feita a chamada para a API
+        resposta = "Resposta gerada pelo chatbot será exibida aqui quando a API estiver integrada."
+        
+        # Simula o streaming da resposta
+        response_container = st.empty()
+        response_text = ""
+        
+        for palavra in resposta.split():
+            response_text += palavra + " "
+            response_container.markdown(response_text)  # Atualiza o texto dinamicamente
+            time.sleep(0.07)  # Pequeno delay para efeito de digitação
