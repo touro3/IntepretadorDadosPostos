@@ -1,7 +1,6 @@
-fastapi==0.100.0
-uvicorn==0.22.0
-pydantic==1.10.9
-openai==0.27.8
+fastapi[standard]==0.115.11
 python-dotenv==1.0.0
 streamlit==1.22.0
-requests==2.28.2
+llama-index-llms-azure-openai==0.3.2
+llama-index-embeddings-azure-openai==0.3.1
+llama-index==0.12.25
