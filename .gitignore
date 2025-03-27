@@ -70,3 +70,5 @@ backend/app/schemas/__pycache__/
 
 # Relatórios de erros do Python
 python-crash.log
+/pg_data/
+/data/

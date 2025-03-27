@@ -4,3 +4,8 @@ streamlit==1.22.0
 llama-index-llms-azure-openai==0.3.2
 llama-index-embeddings-azure-openai==0.3.1
 llama-index==0.12.25
+minio==7.2.15
+prefect==3.2.14
+psycopg2-binary==2.9.10
+llama-index-llms-ollama==0.5.3
+llama-index-embeddings-huggingface==0.5.2
