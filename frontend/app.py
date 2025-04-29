@@ -4,7 +4,7 @@ import time
 # Configuração da interface
 st.set_page_config(page_title="Chatbot GPT-4o", page_icon="💬")
 
-st.title("🤖 Chatbot com GPT-4o")
+st.title(" 🤖 Chatbot ")
 st.write("Digite sua pergunta abaixo e o chatbot responderá.")
 
 # Campo de entrada do usuário
