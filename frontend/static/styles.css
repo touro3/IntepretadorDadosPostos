@@ -1,0 +1,125 @@
+/* styles.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body, .stApp {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #111;
+  color: #eee;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  width: 90vw;
+  max-width: 1000px;
+  height: 600px;
+  background: #1c1c1c;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  margin: auto;
+}
+
+.sidebar {
+  background-color: #181818;
+  padding: 40px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #333;
+}
+.sidebar h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #fff;
+}
+.sidebar span {
+  color: #4a90e2;
+  font-weight: 400;
+}
+
+.chatbox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  background-color: #121212;
+}
+
+.chat-header p {
+  font-size: 18px;
+  color: #aaa;
+  margin-bottom: 15px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding-right: 10px;
+}
+
+.message {
+  padding: 12px 16px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  max-width: 80%;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.user-message {
+  background-color: #4a90e2;
+  color: white;
+  margin-left: auto;
+  border-bottom-right-radius: 0;
+}
+
+.bot-message {
+  background-color: #333;
+  color: #eee;
+  margin-right: auto;
+  border-bottom-left-radius: 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+#userInput {
+  flex: 1;
+  padding: 14px 18px;
+  font-size: 16px;
+  border: 1px solid #444;
+  border-radius: 14px;
+  outline: none;
+  background-color: #1e1e1e;
+  color: #eee;
+  transition: border 0.2s ease;
+}
+#userInput::placeholder {
+  color: #888;
+}
+#userInput:focus {
+  border-color: #4a90e2;
+}
+#sendButton {
+  padding: 14px 16px;
+  background-color: #4a90e2;
+  color: white;
+  font-size: 20px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+#sendButton:hover {
+  background-color: #3a77c1;
+}

@@ -1,28 +1,35 @@
-import streamlit as st
-import time
+from flask import Flask, render_template, request, jsonify
+from dotenv import load_dotenv
+import os
+import openai
 
-# Configuração da interface
-st.set_page_config(page_title="Chatbot GPT-4o", page_icon="💬")
+load_dotenv()
+app = Flask(__name__)
 
-st.title(" 🤖 Chatbot ")
-st.write("Digite sua pergunta abaixo e o chatbot responderá.")
+# Define a chave da OpenAI
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
-# Campo de entrada do usuário
-question = st.text_input("Pergunta:", placeholder="Digite sua dúvida aqui...")
+@app.route('/')
+def index():
+    return render_template("index.html")
 
-# Botão de envio
-if st.button("Enviar"):
-    if question:
-        st.success("Resposta do Chatbot:")
-        
-        # Aqui, futuramente, será feita a chamada para a API
-        resposta = "Resposta gerada pelo chatbot será exibida aqui quando a API estiver integrada."
-        
-        # Simula o streaming da resposta
-        response_container = st.empty()
-        response_text = ""
-        
-        for palavra in resposta.split():
-            response_text += palavra + " "
-            response_container.markdown(response_text)  # Atualiza o texto dinamicamente
-            time.sleep(0.07)  # Pequeno delay para efeito de digitação
+@app.route('/chat', methods=['POST'])
+def chat():
+    data = request.get_json()
+    user_message = data.get("message", "")
+
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": "Você é um assistente útil e simpático."},
+                {"role": "user", "content": user_message}
+            ]
+        )
+        reply = response.choices[0].message.content
+        return jsonify({"reply": reply})
+    except Exception as e:
+        return jsonify({"reply": f"Erro ao conectar com a OpenAI: {str(e)}"}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True)
