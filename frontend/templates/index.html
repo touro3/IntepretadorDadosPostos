@@ -2,19 +2,28 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Chat modelo</title>
+  <title>ChatBot Frentista</title>
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
   <div class="container">
     <div class="sidebar">
-      <h1>Chat <span>modelo</span></h1>
+      <h1>Chat <span>modelo</span>
+       Frentista
+      </h1>
+      
     </div>
     <div class="chatbox">
       <div class="chat-header">
-        <p>Como eu posso te ajudar hoje?</p>
+        <p>ChatBot Frentista</p>
       </div>
-      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-messages" id="chatMessages">
+        <!-- Mensagem inicial do bot com GIF -->
+        <div class="message bot-message">
+          <img src="/static/robo_animado.gif" alt="Bot" class="bot-avatar">
+          <span>Olá! Como posso te ajudar hoje?</span>
+        </div>
+      </div>
       <div class="chat-input">
         <input type="text" id="userInput" placeholder="Digite sua mensagem..." />
         <button id="sendButton">➤</button>

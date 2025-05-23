@@ -1,43 +1,79 @@
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById('sendButton').addEventListener('click', async () => {
-    const input = document.getElementById('userInput');
+  const sendButton = document.getElementById('sendButton');
+  const input = document.getElementById('userInput');
+  const messagesContainer = document.getElementById('chatMessages');
+
+  async function sendMessage() {
     const message = input.value.trim();
+    if (!message) return;
 
-    if (message !== '') {
-      const messagesContainer = document.getElementById('chatMessages');
+    // Adiciona mensagem do usuário (sem avatar)
+    addMessage(message, 'user-message', false);
+    input.value = '';
+    
+    try {
+      // Mostra mensagem de "Digitando..." com avatar do robô
+      const typingMsg = addMessage(
+        '<div class="typing-indicator"><span></span><span></span><span></span></div>', 
+        'bot-message', 
+        true
+      );
+      
+      // Simula delay de resposta
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Remove o "Digitando..." antes de mostrar a resposta real
+      messagesContainer.removeChild(typingMsg);
 
-      // Exibe mensagem do usuário
-      const userMessage = document.createElement('div');
-      userMessage.className = 'message user-message';
-      userMessage.textContent = message;
-      messagesContainer.appendChild(userMessage);
+      // Envia para o servidor
+      const response = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      });
 
-      input.value = '';
-      input.focus();
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      const data = await response.json();
+      
+      // Adiciona resposta do bot COM avatar animado
+      addMessage(
+        `<img src="/static/robo_animado.gif" class="bot-avatar">
+         <div class="bot-text">${data.reply}</div>`, 
+        'bot-message', 
+        true
+      );
+      
+    } catch (error) {
+      addMessage(
+        `<img src="/static/robo_animado.gif" class="bot-avatar">
+         <div class="bot-text">Erro ao conectar com o servidor</div>`, 
+        'bot-message', 
+        true
+      );
+      console.error('Erro no chat:', error);
+    }
+  }
 
-      try {
-        const response = await fetch('/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message })
-        });
+  function addMessage(content, className, isHTML = false) {
+    const message = document.createElement("div");
+    message.className = `message ${className}`;
+    
+    if (isHTML) {
+      message.innerHTML = content;
+    } else {
+      message.textContent = content;
+    }
+    
+    messagesContainer.appendChild(message);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    return message;
+  }
 
-        const data = await response.json();
-
-        // Exibe resposta do bot
-        const botMessage = document.createElement('div');
-        botMessage.className = 'message bot-message';
-        botMessage.textContent = data.reply;
-        messagesContainer.appendChild(botMessage);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-      } catch (error) {
-        const errorMsg = document.createElement('div');
-        errorMsg.className = 'message bot-message';
-        errorMsg.textContent = 'Erro ao conectar com o servidor.';
-        messagesContainer.appendChild(errorMsg);
-      }
+  // Event listeners
+  sendButton.addEventListener('click', sendMessage);
+  
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      sendMessage();
     }
   });
 });
