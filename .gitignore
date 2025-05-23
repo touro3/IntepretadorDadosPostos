@@ -72,3 +72,5 @@ backend/app/schemas/__pycache__/
 python-crash.log
 /pg_data/
 /data/
+
+.env
