@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>ChatBot Frentista</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h1>Chat <span>modelo</span>
+       Frentista
+      </h1>
+      
+    </div>
+    <div class="chatbox">
+      <div class="chat-header">
+        <p>ChatBot Frentista</p>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <!-- Mensagem inicial do bot com GIF -->
+        <div class="message bot-message">
+          <img src="/static/robo.png" alt="Bot" class="bot-avatar">
+          <span>Olá! Como posso te ajudar hoje?</span>
+        </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Digite sua mensagem..." />
+        <button id="sendButton">➤</button>
+      </div>
+    </div>
+  </div>
+  <script src="/static/script.js"></script>
+</body>
+</html>
