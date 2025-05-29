@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       
       // Adiciona resposta do bot COM avatar animado
       addMessage(
-        `<img src="/static/robo_animado.gif" class="bot-avatar">
+        `<img src="/static/robo.png" class="bot-avatar">
          <div class="bot-text">${data.reply}</div>`, 
         'bot-message', 
         true
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
       
     } catch (error) {
       addMessage(
-        `<img src="/static/robo_animado.gif" class="bot-avatar">
+        `<img src="/static/robo.png" class="bot-avatar">
          <div class="bot-text">Erro ao conectar com o servidor</div>`, 
         'bot-message', 
         true
