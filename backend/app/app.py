@@ -1,11 +1,18 @@
 from fastapi import FastAPI
+from config.models import RespostaBot, PerguntaBot, ETLResponse
+from service.tex_to_sql import consulta_com_sql_e_resposta
+from dags.etl_s3_to_postgres import postos_etl_flow
 
-app = FastAPI(title="Chatbot API", version="1.0")
+app = FastAPI(title="postos", root_path="/alfred/api")
 
-# Registrar rotas
-app.include_router(chat_router, prefix="/api/v1", tags=["chat"])
 
-if __name__ == "__main__":
-    import uvicorn
+@app.post("/pergunta", response_model=RespostaBot)
+def indexacao(pergunta: PerguntaBot):
+    resposta = consulta_com_sql_e_resposta(pergunta=pergunta.pergunta)
+    return RespostaBot(resposta=resposta["resposta_natural"])
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+
+@app.post("/etl", response_model=ETLResponse)
+def etl(data: str = "2025-03-24"):
+    postos_etl_flow(data=data)
+    return ETLResponse(status="Realizado")

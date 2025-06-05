@@ -1,7 +1,13 @@
 services:
+  fastapi:
+    build: .
+    container_name: fastapi_postos
+    ports:
+      - "11000:11000"
+    command: uv run gunicorn -k uvicorn.workers.UvicornWorker app:app --bind 0.0.0.0:11000 --workers 2
   minio:
     image: minio/minio:latest
-    container_name: minio
+    container_name: minio_postos
     ports:
       - "9000:9000"
       - "9001:9001"
@@ -11,10 +17,9 @@ services:
     command: server /data --console-address ":9001"
     volumes:
       - ./data:/data
-
   postgres:
     image: postgres:latest
-    container_name: postgres
+    container_name: postgres_postos
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password

@@ -3,8 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv(override=True)
 
-AZURE_LLM_API_KEY = os.getenv("AZURE_LLM_API_KEY")
-AZURE_EMBEDDING_API_KEY = os.getenv("AZURE_EMBEDDING_API_KEY")
+AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY")
 
 MINIO_ENDPOINT = os.getenv("MINIO_ENDPOINT")
 MINIO_ACCESS_KEY = os.getenv("MINIO_ACCESS_KEY")
